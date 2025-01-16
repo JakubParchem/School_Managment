@@ -10,14 +10,14 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private float value; // np. 5, 4
+    private float value;
     private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "student_id") // Ocena jest przypisana jednemu uczniowi
+    @JoinColumn(name = "student_id")
     private Student student;
     @ManyToOne
-    @JoinColumn(name = "subject_id") // Ocena dotyczy jednego przedmiotu
+    @JoinColumn(name = "subject_id")
     private Subject subject;
 
     public Grade(Long id, float value, LocalDate date, Student student, Subject subject) {
@@ -26,6 +26,10 @@ public class Grade {
         this.date = date;
         this.student = student;
         this.subject = subject;
+    }
+
+    public Grade() {
+
     }
 
     public float getValue() {

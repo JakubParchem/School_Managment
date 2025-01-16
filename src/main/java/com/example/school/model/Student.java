@@ -12,7 +12,7 @@ public class Student {
     private LocalDate enrollmentDate;
 
     @ManyToOne
-    @JoinColumn(name = "classgroup_id") // Każdy uczeń należy do jednej klasy
+    @JoinColumn(name = "classgroup_id")
     private ClassGroup classGroup;
     public Student(Long id, String name, String email, LocalDate enrollmentDate, ClassGroup classGroup) {
         this.id = id;
