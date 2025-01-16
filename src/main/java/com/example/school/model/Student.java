@@ -10,7 +10,6 @@ public class Student {
     private String name;
     private String email;
     private LocalDate enrollmentDate;
-
     @ManyToOne
     @JoinColumn(name = "classgroup_id")
     private ClassGroup classGroup;
