@@ -25,38 +25,31 @@ public class GradeService {
     }
 
     public Grade createGrade(Grade grade) {
-        validateGrade(grade); // Validate the grade data
+        if(!grade.validate()){
+            throw new IllegalArgumentException("wrong grade or date, student or subject are empty");
+        }
         return gradeRepository.save(grade);
     }
-
-    /**
-     * Update an existing grade.
-     *
-     * @param id    Grade ID
-     * @param grade Grade object with updated data
-     * @return Updated grade object
-     */
     public Grade updateGrade(Long id, Grade grade) {
-        Grade existingGrade = gradeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Grade not found with ID: " + id));
-
-        validateGrade(grade); // Validate the grade data
-
-        // Update fields of the existing grade
-        existingGrade.setValue(grade.getValue());
-        existingGrade.setDescription(grade.getDescription());
-
+        if(gradeRepository.findById(id).isEmpty()){
+            throw new IllegalArgumentException("No grade with id: "+id);
+        }
+        Grade existingGrade = gradeRepository.findById(id).get();
+        if(!grade.validate()){
+            throw new IllegalArgumentException("wrong updated grade or date, student or subject are empty");
+        }
+        if(grade.getValue()!=existingGrade.getValue())
+        {
+            existingGrade.setValue(grade.getValue());
+        }
+        if(!grade.getDate().equals(existingGrade.getDate())){
+            existingGrade.setDate(grade.getDate());
+        }
         return gradeRepository.save(existingGrade);
     }
-
-    /**
-     * Delete a grade by ID.
-     *
-     * @param id Grade ID
-     */
     public void deleteGrade(Long id) {
-        if (!gradeRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Grade not found with ID: " + id);
+        if(gradeRepository.findById(id).isEmpty()){
+            throw new IllegalArgumentException("No grade with id: "+id);
         }
         gradeRepository.deleteById(id);
     }
