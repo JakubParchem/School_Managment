@@ -2,6 +2,7 @@ package com.example.school.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -13,12 +14,15 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "classgroup_id")
     private ClassGroup classGroup;
-    public Student(Long id, String name, String email, LocalDate enrollmentDate, ClassGroup classGroup) {
+    @ManyToMany
+    private List<Subject> subjects;
+    public Student(Long id, String name, String email, LocalDate enrollmentDate, ClassGroup classGroup,List<Subject> subjects) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.enrollmentDate = enrollmentDate;
         this.classGroup = classGroup;
+        this.subjects=subjects;
     }
 
     public Student() {
@@ -62,6 +66,13 @@ public class Student {
 
     public void setClassGroup(ClassGroup classGroup) {
         this.classGroup = classGroup;
+    }
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
 }

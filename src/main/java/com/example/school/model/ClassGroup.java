@@ -11,7 +11,7 @@ public class ClassGroup {
     private Long id;
     private String name;
     private int capacity;
-    @OneToMany(mappedBy = "class")
+    @OneToMany(mappedBy = "classGroup")
     private List<Student> students;
     public ClassGroup(Long id, String name, int capacity, List<Student> students) {
         this.id = id;
