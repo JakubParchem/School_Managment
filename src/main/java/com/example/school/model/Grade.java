@@ -9,10 +9,8 @@ public class Grade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private float value;
     private LocalDate date;
-
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
