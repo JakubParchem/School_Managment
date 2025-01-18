@@ -11,15 +11,24 @@ public class ClassGroup {
     private Long id;
     private String name;
     private int capacity;
+    @OneToOne
+    private Teacher class_teacher;
     @OneToMany(mappedBy = "classGroup")
     private List<Student> students;
-    public ClassGroup(Long id, String name, int capacity, List<Student> students) {
+    public ClassGroup(Long id, String name, int capacity,Teacher class_teacher, List<Student> students) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;
         this.students = students;
+        this.class_teacher=class_teacher;
     }
     public ClassGroup() {}
+    public Teacher getClass_teacher() {
+        return class_teacher;
+    }
+    public void setClass_teacher(Teacher class_teacher) {
+        this.class_teacher = class_teacher;
+    }
     public Long getId() {
         return id;
     }

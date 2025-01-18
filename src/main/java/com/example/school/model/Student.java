@@ -39,38 +39,30 @@ public class Student {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
-
     public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
-
     public ClassGroup getClassGroup() {
         return classGroup;
     }
-
     public void setClassGroup(ClassGroup classGroup) {
         this.classGroup = classGroup;
     }
     public List<Subject> getSubjects() {
         return subjects;
     }
-
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }

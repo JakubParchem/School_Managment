@@ -1,5 +1,7 @@
 package com.example.school.service;
 
+import com.example.school.exception.InvalidInputException;
+import com.example.school.exception.ResourceNotFoundException;
 import com.example.school.model.Teacher;
 import com.example.school.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -17,26 +19,26 @@ public class TeacherService {
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
-    public Teacher getTeacherById(Long id) {
+    public Teacher getTeacherById(Long id) throws ResourceNotFoundException {
         if(teacherRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("there is no teacher with id: "+id);
+            throw new ResourceNotFoundException("there is no teacher with id: "+id);
         }
         return teacherRepository.findById(id).get();
     }
 
-    public Teacher createTeacher(Teacher teacher) {
+    public Teacher createTeacher(Teacher teacher) throws InvalidInputException {
         if(!teacher.validate()){
-            throw new IllegalArgumentException("name, email and subject specialisation are required");
+            throw new InvalidInputException("name, email and subject specialisation are required");
         }
         return teacherRepository.save(teacher);
     }
-    public Teacher updateTeacher(Long id, Teacher teacher) {
+    public Teacher updateTeacher(Long id, Teacher teacher) throws ResourceNotFoundException, InvalidInputException {
         if(teacherRepository.findById(id).isEmpty()){
-            throw new IllegalArgumentException("there is no teacher with id: "+id);
+            throw new ResourceNotFoundException("there is no teacher with id: "+id);
         }
         Teacher existingTeacher = teacherRepository.findById(id).get();
         if(!teacher.validate()){
-            throw new IllegalArgumentException("updated teacher doesn't have required fields");
+            throw new InvalidInputException("updated teacher doesn't have required fields");
         }
         if(!existingTeacher.getEmail().equals(teacher.getEmail())){
             existingTeacher.setEmail(teacher.getEmail());
@@ -50,9 +52,9 @@ public class TeacherService {
         return teacherRepository.save(existingTeacher);
     }
 
-    public void deleteTeacher(Long id) {
+    public void deleteTeacher(Long id) throws ResourceNotFoundException {
         if (!teacherRepository.existsById(id)) {
-            throw new IllegalArgumentException("Teacher not found with ID: " + id);
+            throw new ResourceNotFoundException("Teacher not found with ID: " + id);
         }
         teacherRepository.deleteById(id);
     }
