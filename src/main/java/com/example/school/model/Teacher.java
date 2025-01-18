@@ -58,4 +58,8 @@ public class Teacher {
     public boolean validate(){
         return id!=null && !name.isEmpty() && !email.isEmpty() && !subjectSpecialization.isEmpty();
     }
+
+    public void setSubjectSpecialisation(String subject) {
+        this.subjectSpecialization=subject;
+    }
 }

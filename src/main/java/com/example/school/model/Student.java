@@ -2,6 +2,7 @@ package com.example.school.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,9 @@ public class Student {
     public Student() {
     }
     public boolean validate(){
+        if(name==null || email==null){
+            return false;
+        }
         return !name.isEmpty() && !email.isEmpty() && enrollmentDate!=null && id!=null;
     }
     public void setId(Long id) {
@@ -67,5 +71,8 @@ public class Student {
         this.subjects = subjects;
     }
 
+    public void setEnrollment(LocalDate date) {
+        this.enrollmentDate=date;
+    }
 }
 

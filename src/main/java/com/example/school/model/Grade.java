@@ -1,5 +1,6 @@
 package com.example.school.model;
 
+import com.example.school.exception.InvalidInputException;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,31 +19,34 @@ public class Grade {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    public Grade(Long id, float value, LocalDate date, Student student, Subject subject) {
+    public Grade(Long id, float value, LocalDate date, Student student, Subject subject) throws InvalidInputException {
         this.id = id;
-        setValue(value);
+        this.value=value;
         this.date = date;
         this.student = student;
         this.subject = subject;
     }
-
     public Grade() {
 
     }
-
     public float getValue() {
         return value;
     }
-    boolean validateValue(){
-        return value%0.5==0 || value>=2 || value<=5;
-    }
-    public void setValue(float value) {
-        if(!validateValue()){
-            throw new IllegalArgumentException("grade has to be between 2.0 and 5.0 in 0.5 interval");
+    boolean validateValue(float value) throws InvalidInputException {
+        if((value*10)%5==0 && value>=2 && value<=5){
+            return true;
         }
-        this.value = value;
+        return false;
     }
-
+    public void setValue(float value){
+        this.value=value;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public LocalDate getDate() {
         return date;
     }
@@ -66,7 +70,7 @@ public class Grade {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
-    public boolean validate(){
-        return validateValue() && date!=null && student!=null && subject!=null;
+    public boolean validate() throws InvalidInputException {
+        return validateValue(this.value) && date!=null && student!=null && subject!=null;
     }
 }

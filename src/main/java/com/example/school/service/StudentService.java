@@ -4,7 +4,6 @@ import com.example.school.exception.InvalidInputException;
 import com.example.school.exception.ResourceNotFoundException;
 import com.example.school.model.ClassGroup;
 import com.example.school.model.Student;
-import com.example.school.model.dto.StudentDto;
 import com.example.school.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,54 +16,34 @@ public class StudentService {
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-    public StudentDto createStudent(StudentDto studentDto) throws InvalidInputException {
-        Student student=mapToEntity(studentDto);
+    public Student createStudent(Student student) throws InvalidInputException {
         if(!student.validate()){
             throw new InvalidInputException("id, name, email and enrollment are required fields");
         }
-        return mapToDto(studentRepository.save(student));
+        return studentRepository.save(student);
     }
-    public StudentDto getStudentById(Long id) throws ResourceNotFoundException {
-        if(!studentRepository.existsById(id)){
+    public Student getStudentById(Long id) throws ResourceNotFoundException {
+        if(!studentRepository.findById(id).isEmpty()){
             throw new ResourceNotFoundException("could not find student with id: "+id);
         }
-        return mapToDto(studentRepository.findById(id).get());
+        return studentRepository.findById(id).get();
     }
-    public StudentDto updateStudent(Long actualStudentId, StudentDto updatedStudentdto) throws ResourceNotFoundException {
-        Student actualStudent = mapToEntity(getStudentById(actualStudentId));
-        Student updatedStudent = mapToEntity(updatedStudentdto);
+    public Student updateStudent(Long actualStudentId, Student updatedStudent) throws ResourceNotFoundException {
+        Student actualStudent = getStudentById(actualStudentId);
         if(!actualStudent.getEmail().equals(updatedStudent.getEmail()) && !updatedStudent.getEmail().isEmpty()){
             actualStudent.setEmail(updatedStudent.getEmail());
         }
         if(!actualStudent.getClassGroup().equals(updatedStudent.getClassGroup())&& updatedStudent.getClassGroup()!=null){
             actualStudent.setClassGroup(updatedStudent.getClassGroup());
         }
-        return mapToDto( studentRepository.save(actualStudent));
+        return studentRepository.save(actualStudent);
     }
     public void deleteStudent(Long id) throws ResourceNotFoundException {
         getStudentById(id);
         studentRepository.deleteById(id);
     }
-    public List<StudentDto> getAllStudents(){
-        return studentRepository.findAll().stream()
-                .map(this::mapToDto)
-                .collect(Collectors.toList());
+    public List<Student> getAllStudents(){
+        return studentRepository.findAll();
     }
-    private StudentDto mapToDto(Student student) {
-        StudentDto dto = new StudentDto();
-        dto.setId(student.getId());
-        dto.setName(student.getName());
-        dto.setClassGroupId(student.getClassGroup() != null ? student.getClassGroup().getId() : null);
-        return dto;
-    }
-    private Student mapToEntity(StudentDto dto) {
-        Student student = new Student();
-        student.setName(dto.getName());
-        if (dto.getClassGroupId() != null) {
-            ClassGroup classGroup = new ClassGroup();
-            classGroup.setId(dto.getClassGroupId());
-            student.setClassGroup(classGroup);
-        }
-        return student;
-    }
+
 }
