@@ -13,13 +13,13 @@ public class Subject {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
-    @ManyToMany(mappedBy = "subjects")
-    private List<Student> students;
+//    @ManyToMany(mappedBy = "subjects")
+//    private List<Student> students;
 
     public Subject(String name, Teacher teacher, List<Student> students) {
         this.name = name;
         this.teacher = teacher;
-        this.students = students;
+        //this.students = students;
     }
 
     public Subject() {
@@ -50,14 +50,14 @@ public class Subject {
         this.teacher = teacher;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
     public boolean validate(){
-        return !name.isEmpty() && teacher!=null && !students.isEmpty();
+        return !name.isEmpty() && teacher!=null;
     }
 }

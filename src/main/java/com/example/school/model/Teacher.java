@@ -14,8 +14,8 @@ public class Teacher {
     private String email;
     private String subjectSpecialization;
 
-    @OneToMany(mappedBy = "teacher")
-    private List<Subject> subjects;
+//    @OneToMany(mappedBy = "teacher")
+//    private List<Subject> subjects;
     public Long getId() {
         return id;
     }
@@ -48,13 +48,13 @@ public class Teacher {
         this.subjectSpecialization = subjectSpecialization;
     }
 
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
-    }
+//    public List<Subject> getSubjects() {
+//        return subjects;
+//    }
+//
+//    public void setSubjects(List<Subject> subjects) {
+//        this.subjects = subjects;
+//    }
     public boolean validate(){
         return id!=null && !name.isEmpty() && !email.isEmpty() && !subjectSpecialization.isEmpty();
     }

@@ -12,9 +12,9 @@ public class Grade {
     private Long id;
     private float value;
     private LocalDate date;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+//    @ManyToOne
+//    @JoinColumn(name = "student_id")
+//    private Student student;
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
@@ -23,7 +23,7 @@ public class Grade {
         this.id = id;
         this.value=value;
         this.date = date;
-        this.student = student;
+        //this.student = student;
         this.subject = subject;
     }
     public Grade() {
@@ -55,13 +55,13 @@ public class Grade {
         this.date = date;
     }
 
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
+//    public Student getStudent() {
+//        return student;
+//    }
+//
+//    public void setStudent(Student student) {
+//        this.student = student;
+//    }
 
     public Subject getSubject() {
         return subject;
@@ -71,6 +71,6 @@ public class Grade {
         this.subject = subject;
     }
     public boolean validate() throws InvalidInputException {
-        return validateValue(this.value) && date!=null && student!=null && subject!=null;
+        return validateValue(this.value) && date!=null && subject!=null;
     }
 }

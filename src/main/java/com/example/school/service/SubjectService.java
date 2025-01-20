@@ -44,9 +44,9 @@ public class SubjectService {
         if (!subject.validate()) {
             throw new InvalidInputException("name, teacher and students fields are required");
         }
-        if (!subject.getStudents().equals(existingSubject.getStudents())) {
-            existingSubject.setStudents(subject.getStudents());
-        }
+//        if (!subject.getStudents().equals(existingSubject.getStudents())) {
+//            existingSubject.setStudents(subject.getStudents());
+//        }
         if (!subject.getTeacher().equals(existingSubject.getTeacher())) {
             existingSubject.setTeacher(subject.getTeacher());
         }

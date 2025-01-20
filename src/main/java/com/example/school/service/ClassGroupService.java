@@ -41,9 +41,9 @@ public class ClassGroupService {
         if(classGroup.getCapacity()!=existingClassGroup.getCapacity()){
             existingClassGroup.setCapacity(classGroup.getCapacity());
         }
-        if(!classGroup.getStudents().equals(existingClassGroup.getStudents())){
-            existingClassGroup.setStudents(classGroup.getStudents());
-        }
+//        if(!classGroup.getStudents().equals(existingClassGroup.getStudents())){
+//            existingClassGroup.setStudents(classGroup.getStudents());
+//        }
         if(!classGroup.getClass_teacher().equals(existingClassGroup.getClass_teacher())){
             existingClassGroup.setClass_teacher(classGroup.getClass_teacher());
         }

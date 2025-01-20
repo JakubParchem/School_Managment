@@ -13,15 +13,15 @@ public class ClassGroup {
     private int capacity;
     @OneToOne
     private Teacher class_teacher;
-    @OneToMany(mappedBy = "classGroup")
-    private List<Student> students;
-    public ClassGroup(Long id, String name, int capacity,Teacher class_teacher, List<Student> students) {
-        this.id = id;
-        this.name = name;
-        this.capacity = capacity;
-        this.students = students;
-        this.class_teacher=class_teacher;
-    }
+//    @OneToMany(mappedBy = "classGroup")
+//    private List<Student> students;
+//    public ClassGroup(Long id, String name, int capacity,Teacher class_teacher, List<Student> students) {
+//        this.id = id;
+//        this.name = name;
+//        this.capacity = capacity;
+//        this.students = students;
+//        this.class_teacher=class_teacher;
+//    }
     public ClassGroup() {}
     public Teacher getClass_teacher() {
         return class_teacher;
@@ -47,12 +47,12 @@ public class ClassGroup {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-    public List<Student> getStudents() {
-        return students;
-    }
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+//    public List<Student> getStudents() {
+//        return students;
+//    }
+//    public void setStudents(List<Student> students) {
+//        this.students = students;
+//    }
     public boolean validate(){
         return !name.isEmpty();
     }
