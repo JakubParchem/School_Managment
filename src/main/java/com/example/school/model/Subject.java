@@ -16,7 +16,7 @@ public class Subject {
 //    @ManyToMany(mappedBy = "subjects")
 //    private List<Student> students;
 
-    public Subject(String name, Teacher teacher, List<Student> students) {
+    public Subject(String name, Teacher teacher) {
         this.name = name;
         this.teacher = teacher;
         //this.students = students;

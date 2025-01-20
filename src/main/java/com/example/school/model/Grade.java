@@ -19,7 +19,7 @@ public class Grade {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    public Grade(Long id, float value, LocalDate date, Student student, Subject subject) throws InvalidInputException {
+    public Grade(Long id, float value, LocalDate date, Subject subject) throws InvalidInputException {
         this.id = id;
         this.value=value;
         this.date = date;

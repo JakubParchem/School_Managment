@@ -46,9 +46,9 @@ public class TeacherService {
         if(!existingTeacher.getName().equals(teacher.getName())){
             existingTeacher.setName(teacher.getName());
         }
-        if(!existingTeacher.getSubjects().equals(teacher.getSubjects())){
-            existingTeacher.setSubjects(teacher.getSubjects());
-        }
+//        if(!existingTeacher.getSubjects().equals(teacher.getSubjects())){
+//            existingTeacher.setSubjects(teacher.getSubjects());
+//        }
         return teacherRepository.save(existingTeacher);
     }
 
