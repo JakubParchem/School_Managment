@@ -55,4 +55,7 @@ public class ClassGroupService {
         }
         classGroupRepository.deleteById(id);
     }
+    public void deleteAllClassGroups(){
+        classGroupRepository.deleteAll();
+    }
 }

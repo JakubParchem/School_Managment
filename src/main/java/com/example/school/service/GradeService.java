@@ -55,4 +55,7 @@ public class GradeService {
         }
         gradeRepository.deleteById(id);
     }
+    public void deleteAllGrades(){
+        gradeRepository.deleteAll();
+    }
 }

@@ -49,4 +49,8 @@ public class GradeController {
         gradeService.deleteGrade(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public void deleteAllGrades(){
+        gradeService.deleteAllGrades();
+    }
 }

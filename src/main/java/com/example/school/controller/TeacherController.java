@@ -49,4 +49,8 @@ public class TeacherController {
         teacherService.deleteTeacher(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public void deleteAllTeachers(){
+        teacherService.deleteAllTeachers();
+    }
 }

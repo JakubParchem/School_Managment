@@ -24,23 +24,13 @@ public class MainController {
     private TeacherController teacherController;
     @Autowired
     private SubjectController subjectController;
-    @Autowired
-    private StudentRepository studentRepository;
-    @Autowired
-    private GradeRepository gradeRepository;
-    @Autowired
-    private ClassGroupRepository classGroupRepository;
-    @Autowired
-    private SubjectRepository subjectRepository;
-    @Autowired
-    private TeacherRepository teacherRepository;
 
     public void deleteAll() throws ResourceNotFoundException {
-        studentRepository.deleteAll();
-        classGroupRepository.deleteAll();
-        gradeRepository.deleteAll();
-        subjectRepository.deleteAll();
-        teacherRepository.deleteAll();
+        studentController.deleteAllStudents();
+        classGroupController.deleteAllClassGroups();
+        gradeController.deleteAllGrades();
+        subjectController.deleteAllSubjects();
+        teacherController.deleteAllTeachers();
     }
     public void createSample() throws InvalidInputException, ResourceNotFoundException {
         Teacher teacher=new Teacher(1L,"Mr. Example","example@mail.com","Math");
@@ -52,8 +42,10 @@ public class MainController {
         ClassGroup classGroup=new ClassGroup(1L,"12c",44,teacher);
         classGroupController.createClassGroup(classGroup);
         List<Subject> subjects=new ArrayList<>();
+        List<Grade> grades=new ArrayList<>();
         subjects.add(subject);
-        Student student=new Student(1L,"Johnny","jhonny@mail.com",LocalDate.now(),classGroup,subjects);
+        grades.add(grade);
+        Student student=new Student(1L,"Johnny","jhonny@mail.com",LocalDate.now(),classGroup,subjects,grades);
         studentController.createStudent(student);
 
     }

@@ -45,4 +45,8 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public void deleteAllStudents(){
+        studentService.deleteAllStudents();
+    }
 }

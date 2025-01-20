@@ -43,4 +43,8 @@ public class ClassGroupController {
         classGroupService.deleteClassGroup(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public void deleteAllClassGroups(){
+        classGroupService.deleteAllClassGroups();
+    }
 }

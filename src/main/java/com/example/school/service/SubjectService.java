@@ -59,4 +59,7 @@ public class SubjectService {
         }
         subjectRepository.deleteById(id);
     }
+    public void deleteAllSubjects(){
+        subjectRepository.deleteAll();
+    }
 }

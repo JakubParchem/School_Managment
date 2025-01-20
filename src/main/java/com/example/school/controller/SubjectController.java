@@ -49,4 +49,8 @@ public class SubjectController {
         subjectService.deleteSubject(id);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping
+    public void deleteAllSubjects(){
+        subjectService.deleteAllSubjects();
+    }
 }

@@ -17,13 +17,17 @@ public class Student {
     private ClassGroup classGroup;
     @ManyToMany
     private List<Subject> subjects;
-    public Student(Long id, String name, String email, LocalDate enrollmentDate, ClassGroup classGroup,List<Subject> subjects) {
+
+    @OneToMany
+    private List<Grade> grades;
+    public Student(Long id, String name, String email, LocalDate enrollmentDate, ClassGroup classGroup,List<Subject> subjects,List<Grade> grades) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.enrollmentDate = enrollmentDate;
         this.classGroup = classGroup;
         this.subjects=subjects;
+        this.grades=grades;
     }
 
     public Student() {
